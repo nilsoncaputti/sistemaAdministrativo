@@ -4,7 +4,7 @@
     <label for="nome" class="col-form-label col-sm-2 required">Nome*</label>
 
     <div class="col-sm-10">
-        <input value="{{ old('nome', @$empresa->nome) }}" type="text" name="nome" maxlength="255" class="form-control @error('nome') is-invalid @enderror">
+        <input required value="{{ old('nome', @$empresa->nome) }}" type="text" name="nome" maxlength="255" class="form-control @error('nome') is-invalid @enderror">
 
         @error('nome')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -27,7 +27,7 @@
     <label class="col-form-label col-sm-2 required" for="documento">Documento*</label>
 
     <div class="col-sm-10">
-        <input value="{{ old('documento', @$empresa->documento) }}" type="text" id="documento" name="documento" required="required" maxlength="18" class="cpf_cnpj form-control @error('documento') is-invalid @enderror">
+        <input required value="{{ old('documento', @$empresa->documento) }}" type="text" id="documento" name="documento" maxlength="18" class="cpf_cnpj form-control @error('documento') is-invalid @enderror">
 
         @error('documento')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -52,7 +52,7 @@
         <label class="col-form-label col-sm-2 required" for="nome_contato">Nome Contato*</label>
 
         <div class="col-sm-10">
-            <input value="{{ old('nome_contato', @$empresa->nome_contato) }}" type="text" id="nome_contato" name="nome_contato" required="required" maxlength="255" class="form-control @error('nome_contato') is-invalid @enderror">
+            <input required value="{{ old('nome_contato', @$empresa->nome_contato) }}" type="text" id="nome_contato" name="nome_contato" required="required" maxlength="255" class="form-control @error('nome_contato') is-invalid @enderror">
 
             @error('nome_contato')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -64,7 +64,7 @@
         <label class="col-form-label col-sm-2 required" for="celular">Celular*</label>
 
         <div class="col-sm-10">
-            <input value="{{ old('celular', @$empresa->celular) }}" type="text" id="celular" name="celular" required="required" maxlength="15" class="celular form-control @error('celular') is-invalid @enderror">
+            <input required value="{{ old('celular', @$empresa->celular) }}" type="text" id="celular" name="celular" required="required" maxlength="15" class="celular form-control @error('celular') is-invalid @enderror">
 
             @error('celular')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -76,7 +76,7 @@
         <label class="col-form-label col-sm-2" for="email">Email*</label>
 
         <div class="col-sm-10">
-            <input value="{{ old('email', @$empresa->email) }}" type="text" id="email" name="email" maxlength="100" class="form-control @error('email') is-invalid @enderror">
+            <input required value="{{ old('email', @$empresa->email) }}" type="text" id="email" name="email" maxlength="100" class="form-control @error('email') is-invalid @enderror">
 
             @error('email')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -100,7 +100,7 @@
         <label class="col-form-label col-sm-2" for="cep">Cep*</label>
 
         <div class="col-sm-10">
-            <input value="{{ old('cep', @$empresa->cep) }}" type="text" id="cep" name="cep" maxlength="9" class="cep form-control @error('cep') is-invalid @enderror">
+            <input required value="{{ old('cep', @$empresa->cep) }}" type="text" id="cep" name="cep" maxlength="9" class="cep form-control @error('cep') is-invalid @enderror">
 
             @error('cep')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -112,7 +112,7 @@
         <label class="col-form-label col-sm-2" for="logradouro">Logradouro*</label>
 
         <div class="col-sm-10">
-            <input value="{{ old('logradouro', @$empresa->logradouro) }}" type="text" id="logradouro" name="logradouro" maxlength="150" class="form-control @error('logradouro') is-invalid @enderror">
+            <input required value="{{ old('logradouro', @$empresa->logradouro) }}" type="text" id="logradouro" name="logradouro" maxlength="150" class="form-control @error('logradouro') is-invalid @enderror">
 
             @error('logradouro')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -124,7 +124,7 @@
         <label class="col-form-label col-sm-2" for="bairro">Bairro*</label>
 
         <div class="col-sm-10">
-            <input value="{{ old('bairro', @$empresa->bairro) }}" type="text" id="bairro" name="bairro" maxlength="100" class="form-control @error('bairro') is-invalid @enderror">
+            <input required value="{{ old('bairro', @$empresa->bairro) }}" type="text" id="bairro" name="bairro" maxlength="100" class="form-control @error('bairro') is-invalid @enderror">
 
             @error('bairro')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -136,7 +136,7 @@
         <label class="col-form-label col-sm-2" for="cidade">Cidade*</label>
 
         <div class="col-sm-10">
-            <input value="{{ old('cidade', @$empresa->cidade) }}" type="text" id="cidade" name="cidade" maxlength="100" class="form-control @error('cidade') is-invalid @enderror">
+            <input required value="{{ old('cidade', @$empresa->cidade) }}" type="text" id="cidade" name="cidade" maxlength="100" class="form-control @error('cidade') is-invalid @enderror">
 
             @error('cidade')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -148,7 +148,7 @@
         <label class="col-form-label col-sm-2" for="estado">Estado*</label>
 
         <div class="col-sm-10">
-            <input value="{{ old('estado', @$empresa->estado) }}" type="text" id="estado" name="estado" maxlength="2" class="form-control @error('estado') is-invalid @enderror">
+            <input required value="{{ old('estado', @$empresa->estado) }}" type="text" id="estado" name="estado" maxlength="2" class="form-control @error('estado') is-invalid @enderror">
 
             @error('estado')
             <div class="alert alert-danger">{{ $message }}</div>
