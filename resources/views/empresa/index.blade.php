@@ -57,6 +57,7 @@
                                 <td></td>
                                 <td></td>
                             </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
