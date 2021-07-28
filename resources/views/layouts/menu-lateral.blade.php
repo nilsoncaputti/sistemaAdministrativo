@@ -1,9 +1,9 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">        
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ route('home') }}" class="brand-link">
         <span class="brand-text font-weight-light">Treinaweb</span>
     </a>
 
-    <div class="sidebar">      
+    <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
             </div>
@@ -11,21 +11,20 @@
             <div class="info">
                 <a href="" class="d-block">{{ Auth::user()->name }}</a>
 
-                <a class="btn btn-danger btn-sm" href="{{ route('logout') }}"	
-                    onclick="event.preventDefault();	
-                                    document.getElementById('logout-form').submit();">	
-                    Sair	
-                </a>	
+                <a class="btn btn-danger btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault();	
+                                    document.getElementById('logout-form').submit();">
+                    Sair
+                </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">	        <footer class="main-footer">
-                    @csrf	           
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <footer class="main-footer">
+                        @csrf
                 </form>
             </div>
         </div>
-    
+
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
                 <li class="nav-item menu-open">
                     <a href="{{ route('home') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -112,6 +111,7 @@
                                 <p>Novo Lançamento</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="../../index2.html" class="nav-link">
                                 <i class="fas fa-chart-pie nav-icon"></i>
@@ -120,7 +120,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>          
+                </li>
 
                 <li class="nav-item  menu-open">
                     <a href="#" class="nav-link">
@@ -138,9 +138,9 @@
                                 <i class="fas fa-boxes nav-icon"></i>
                                 <p>Produtos</p>
                             </a>
-                        </li>                        
+                        </li>
                     </ul>
-                </li>    
+                </li>
             </ul>
         </nav>
     </div>

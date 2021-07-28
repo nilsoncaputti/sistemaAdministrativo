@@ -3,29 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Produto extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    use SoftDeletes;
+
     protected $table = 'produtos';
 
-    /**
-    * The database primary key value.
-    *
-    * @var string
-    */
     protected $primaryKey = 'id';
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['nome', 'descricao '];
-
-    
+    protected $fillable = ['nome', 'descricao'];
 }
