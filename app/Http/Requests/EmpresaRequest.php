@@ -7,21 +7,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class EmpresaRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
@@ -41,11 +31,6 @@ class EmpresaRequest extends FormRequest
         ];
     }
 
-    /**
-     * Limpar os valores
-     *
-     * @return void
-     */
     public function validationData()
     {
         $campos = $this->all();
@@ -60,11 +45,6 @@ class EmpresaRequest extends FormRequest
         return $campos;
     }
 
-    /**
-     * Retorna o tipo de validação baseado no tamanho do campo de doc
-     *
-     * @return void
-     */
     private function tipoValidacaoDocumento()
     {
         if (\strlen($this->documento) === 11) {
@@ -74,11 +54,6 @@ class EmpresaRequest extends FormRequest
         return ['required', 'cnpj'];
     }
 
-    /**
-     * Verifica o tipo do metodo para saber se valida o campo tipo
-     *
-     * @return void
-     */
     private function validarTipo()
     {
         if ($this->method() === 'POST') {
