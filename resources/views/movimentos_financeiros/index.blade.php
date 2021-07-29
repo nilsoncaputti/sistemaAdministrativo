@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('title')
-    <h1>Listagem Movimentos_financeiro</h1>
+    <h1>Listagem de Movimentos Financeiros</h1>
 @endsection
 
 @section('breadcrumb')
     <li class="breadcrumb-item">
-        <a href="{{ url('/movimentos_financeiros') }}">Listagem Movimentos_financeiro</a>
+        <a href="{{ url('/movimentos_financeiros') }}">Listar Movimentos Financeiros</a>
     </li>
 @endsection
 
@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Movimentos_financeiros</div>
+                    <div class="card-header">Movimentos Financeiros</div>
                     <div class="card-body">
                         <a href="{{ url('/movimentos_financeiros/create') }}" class="btn btn-success btn-sm" title="Novo Movimentos_financeiro">
                             <i class="fa fa-plus" aria-hidden="true"></i> Novo
@@ -38,14 +38,33 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Descricao</th><th>Valor</th><th>Data</th><th>Ações</th>
+                                        <th>#</th>
+                                        <th>Descricao</th>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                 @foreach($movimentos_financeiros as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->descricao }}</td><td>{{ $item->valor }}</td><td>{{ $item->data }}</td>
+                                        <td>
+                                            {{ $loop->iteration }}
+                                        </td>
+
+                                        <td>
+                                            {{ $item->descricao }}
+                                        </td>
+
+                                        <td>
+                                            {{ $item->valor }}
+                                        </td>
+
+                                        <td>
+                                            {{ $item->data }}
+                                        </td>
+                                        
                                         <td>
                                             <a href="{{ url('/movimentos_financeiros/' . $item->id) }}" title="View Movimentos_financeiro"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Detalhes</button></a>
                                             <a href="{{ url('/movimentos_financeiros/' . $item->id . '/edit') }}" title="Edit Movimentos_financeiro"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Atualizar</button></a>
