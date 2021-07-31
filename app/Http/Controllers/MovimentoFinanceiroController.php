@@ -6,25 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MovimentoFinanceiroRequest;
 
 use App\Models\Movimentos_financeiro;
+use DateTime;
 use Illuminate\Http\Request;
 
 class MovimentoFinanceiroController extends Controller
 {
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $movimentos_financeiros = Movimentos_financeiro::where('descricao', 'LIKE', "%$keyword%")
-                ->orWhere('valor', 'LIKE', "%$keyword%")
-                ->orWhere('data', 'LIKE', "%$keyword%")
-                ->orWhere('tipo', 'LIKE', "%$keyword%")
-                ->orWhere('empresa_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $movimentos_financeiros = Movimentos_financeiro::latest()->paginate($perPage);
+        if (!$request->filled('data_inicial') || !$request->filled('data_final')) {
+            return \redirect()->route('movimentos_financeiros.index', [
+                'data_inicial' => (new DateTime('first day of this month'))->format('d/m/Y'),
+                'data_final' => (new DateTime('last day of this month'))->format('d/m/Y'),
+            ]);
         }
+
+        $movimentos_financeiros = Movimentos_financeiro::buscaPorIntervalo(
+            data_br_para_iso($request->data_inicial),
+            data_br_para_iso($request->data_final)
+        );
 
         return view('movimentos_financeiros.index', compact('movimentos_financeiros'));
     }
@@ -55,18 +54,10 @@ class MovimentoFinanceiroController extends Controller
         return view('movimentos_financeiros.edit', compact('movimentos_financeiro'));
     }
 
-    public function update(Request $request, $id)
+    public function update(MovimentoFinanceiroRequest $request, $id)
     {
-        $this->validate($request, [
-			'descricao' => 'required|string|max:255',
-			'data' => 'required',
-			'tipo' => 'required',
-			'empresa_id' => 'required'
-		]);
-        $requestData = $request->all();
-        
         $movimentos_financeiro = Movimentos_financeiro::findOrFail($id);
-        $movimentos_financeiro->update($requestData);
+        $movimentos_financeiro->update($request->all());
 
         return redirect('movimentos_financeiros')->with('flash_message', 'Movimentos_financeiro updated!');
     }

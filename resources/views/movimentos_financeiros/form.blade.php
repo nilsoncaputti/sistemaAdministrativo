@@ -1,6 +1,6 @@
 <div class="form-group row {{ $errors->has('descricao') ? 'has-error' : ''}}">
     <label for="descricao" class="col-form-label col-sm-2">
-        {{ 'Descricao' }}
+        {{ 'Descrição*' }}
     </label>
 
     <div class="col-sm-10">
@@ -12,7 +12,7 @@
 
 <div class="form-group row {{ $errors->has('valor') ? 'has-error' : ''}}">
     <label for="valor" class="col-form-label col-sm-2">
-        {{ 'Valor' }}
+        {{ 'Valor*' }}
     </label>
     
     <div class="col-sm-10">
@@ -23,7 +23,7 @@
 
 <div class="form-group row {{ $errors->has('data') ? 'has-error' : ''}}">
     <label for="data" class="col-form-label col-sm-2">
-        {{ 'Data' }}
+        {{ 'Data*' }}
     </label>
 
     <div class="col-sm-10">
@@ -34,7 +34,7 @@
 
 <div class="form-group row {{ $errors->has('tipo') ? 'has-error' : ''}}">
     <label for="tipo" class="col-form-label col-sm-2">
-        {{ 'Tipo' }}
+        {{ 'Tipo de Lançamento*' }}
     </label>
 
     <div class="col-sm-10">
@@ -50,11 +50,14 @@
 
 <div class="form-group row {{ $errors->has('empresa_id') ? 'has-error' : ''}}">
     <label for="empresa_id" class="col-form-label col-sm-2">
-        {{ 'Empresa Id' }}
+        {{ 'Empresa*' }}
     </label>
 
     <div class="col-sm-10">
-        <input class="form-control" name="empresa_id" type="number" id="empresa_id" value="{{ isset($movimentos_financeiro->empresa_id) ? $movimentos_financeiro->empresa_id : ''}}" required>
+        <select class="form-control" name="empresa_id" id="empresa-ajax" required style="width: 100%">
+
+        </select>
+        
         {!! $errors->first('empresa_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
