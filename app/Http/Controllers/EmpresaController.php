@@ -36,8 +36,11 @@ class EmpresaController extends Controller
         return \redirect()->route('empresas.show', $empresa->id);
     }
 
-    public function show(Empresa $empresa): View
+    public function show(int $id): View
     {
+        $empresa = Empresa::with(['movimentosEstoque', 'movimentosEstoque.produto'])
+            ->findOrFail($id);
+
         return view('empresa.show', \compact('empresa'));
     }
 

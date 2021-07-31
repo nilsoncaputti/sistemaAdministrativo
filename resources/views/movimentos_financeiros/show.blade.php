@@ -40,43 +40,37 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <th>
-                                        ID
-                                    </th>
+                                    <th>ID</th>
+                                    <td>{{ $movimentos_financeiro->id }}</td>
+                                </tr>
 
+                                <tr>
+                                    <th> Tipo </th>
                                     <td>
-                                        {{ $movimentos_financeiro->id }}
+                                        <span class="badge badge-{{ $movimentos_financeiro->tipo === 'entrada' ? 'success' : 'danger' }}">
+                                            {{ ucfirst($movimentos_financeiro->tipo) }}
+                                        </span>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <th>
-                                        Descricao
-                                    </th>
-
-                                    <td>
-                                        {{ $movimentos_financeiro->descricao }}
-                                    </td>
+                                    <th> Empresa </th>
+                                    <td>{{ $movimentos_financeiro->empresa->nome }}</td>
                                 </tr>
 
                                 <tr>
-                                    <th>
-                                        Valor
-                                    </th>
-
-                                    <td>
-                                        R$ {{ numero_iso_para_br($movimentos_financeiro->valor) }}
-                                    </td>
+                                    <th>Descricao</th>
+                                    <td>{{ $movimentos_financeiro->descricao }}</td>
                                 </tr>
 
                                 <tr>
-                                    <th>
-                                        Data
-                                    </th>
+                                    <th>Valor</th>
+                                    <td>R$ {{ numero_iso_para_br($movimentos_financeiro->valor) }}</td>
+                                </tr>
 
-                                    <td>
-                                        {{ data_iso_para_br($movimentos_financeiro->data) }}
-                                    </td>
+                                <tr>
+                                    <th>Data</th>
+                                    <td>{{ data_iso_para_br($movimentos_financeiro->data) }}</td>
                                 </tr>
                             </tbody>
                         </table>
