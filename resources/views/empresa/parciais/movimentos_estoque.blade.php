@@ -25,10 +25,10 @@
                             <td>R$ {{ numero_iso_para_br($movimentoEstoque->valor) }}</td>
                             <td>R$ {{ numero_iso_para_br($movimentoEstoque->quantidade*$movimentoEstoque->valor) }}</td>
                             <td>
-                                <form method="POST" action="{{ url('/' . '/' ) }}" accept-charset="UTF-8" style="display:inline">
+                                <form method="POST" action="{{ route('movimentos_estoque.destroy', $movimentoEstoque) }}" accept-charset="UTF-8" style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-danger btn-sm" title="Apagar Movimento" onclick="return confirm('Tem certeza que deseja apagar esse movimento?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Apagar Movimento" onclick="return confirm('Tem certeza que deseja apagar esse movimento')"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</button>
                                 </form>
                             </td>
                         </tr>
@@ -39,14 +39,18 @@
 
             <hr>
 
-            <form method="GET">
+            <form method="POST" action="{{ route('movimentos_estoque.store') }}">
+                {{ csrf_field() }}
+
+                <input type="hidden" name="empresa_id" value="{{ $empresa->id }}">
+
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label" for="produto">Produto</label>
+                            <label class="control-label" for="produto_id">Produto</label>
 
                             <div class="input-group">
-                                <select id="produto-ajax" name="produto" type="text" class="form-control"></select>
+                                <select id="produto-ajax" name="produto_id" type="text" class="form-control" style="width: 100%;"></select>
                             </div>
                         </div>
                     </div>
@@ -76,7 +80,10 @@
                             <label class="control-label" for=""></label>
 
                             <div class="input-group">
-                                <button class="btn btn-info m-t-xs" title=""><i class="fa fa-plus" aria-hidden="true"></i> Adicionar</button>
+                                <button class="btn btn-info m-t-xs" title="">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    Adicionar
+                                </button>
                             </div>
                         </div>
                     </div>

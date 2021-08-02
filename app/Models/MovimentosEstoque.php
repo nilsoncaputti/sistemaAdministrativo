@@ -10,6 +10,9 @@ class MovimentosEstoque extends Model
     //Define o nome da tabela
     protected $table = 'movimentos_estoque';
 
+    //Campos permitidos em definição de dados em massa
+    protected $fillable = ['produto_id', 'quantidade', 'valor', 'tipo', 'empresa_id'];
+
     //Define a relação com produto
     public function produto()
     {

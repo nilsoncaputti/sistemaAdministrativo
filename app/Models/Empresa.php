@@ -45,6 +45,7 @@ class Empresa extends Model
         return self::where('tipo', $tipo)->paginate($quantidade);
     }
 
+    //Busca empresa por nome e tipo
     public static function buscarPorNomeTipo(string $nome, string $tipo)
     {
         $nome = '%' . $nome . '%';
