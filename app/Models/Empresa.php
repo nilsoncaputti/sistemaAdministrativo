@@ -55,6 +55,17 @@ class Empresa extends Model
             ->get();
     }
 
+    public static function buscaPorId(int $id)
+    {
+        return self::with([
+            'movimentosEstoque' => function ($query) {
+                $query->latest()->take(5);
+            },
+            'movimentosEstoque.produto'
+        ])
+            ->findOrFail($id);
+    }
+
     //Cria acessor chamado Text para serialização
     public function getTextAttribute(): string
     {

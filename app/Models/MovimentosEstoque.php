@@ -18,4 +18,10 @@ class MovimentosEstoque extends Model
     {
         return $this->belongsTo('App\Models\Produto');
     }
+
+    //Configura a relação com o histórico do saldo
+    public function saldo()
+    {
+        return $this->MorphOne('App\Models\Saldo', 'movimento');
+    }
 }

@@ -11,12 +11,7 @@ class MovimentoEstoqueController extends Controller
     //Cria movimento de estoque
     public function store(MovimentoEstoqueRequest $request)
     {
-        dd($request->all());
-
-        $dados = $request->all();
-        $dados['tipo'] = 'entrada';
-
-        MovimentosEstoque::create($dados);
+        MovimentosEstoque::create($request->all());
 
         return \redirect()->back();
     }

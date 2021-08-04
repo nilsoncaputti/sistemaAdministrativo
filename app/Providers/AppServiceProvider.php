@@ -17,13 +17,10 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
+        \App\Models\MovimentosEstoque::observe(\App\Observers\MovimentosEstoqueObserver::class);
+
         Paginator::useBootstrap();
     }
 }
