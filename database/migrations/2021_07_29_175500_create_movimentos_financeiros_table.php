@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateMovimentosFinanceirosTable extends Migration
 {
@@ -18,7 +19,7 @@ class CreateMovimentosFinanceirosTable extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
 
             $table->timestamps();
-            });
+        });
     }
 
     public function down()
