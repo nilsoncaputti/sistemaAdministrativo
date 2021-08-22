@@ -1,16 +1,20 @@
 @extends('layouts.app')
 
 @section('title')
-<h1>Detalhes Movimento Financeiro</h1>
+<h1>Detalhes Movimento financeiro</h1>
 @endsection
 
 @section('breadcrumb')
 <li class="breadcrumb-item">
-    <a href="{{ url('/movimentos_financeiros') }}">Listar Movimentos</a>
+    <a href="{{ url('/movimentos_financeiros') }}">
+        Listagem Movimentos Financeiros
+    </a>
 </li>
 
 <li class="breadcrumb-item">
-    <a href="{{ url('/movimentos_financeiros/' . $movimentos_financeiro->id) }}">Detalhar Movimentos</a>
+    <a href="{{ url('/movimentos_financeiros/' . $movimentos_financeiro->id) }}">
+        Detalhes Movimento financeiro
+    </a>
 </li>
 @endsection
 
@@ -20,17 +24,27 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Detalhes do Movimento Financeiro {{ $movimentos_financeiro->id }}
+                    Detalhes do Movimento financeiro {{ $movimentos_financeiro->id }}
                 </div>
 
                 <div class="card-body">
-                    <a href="{{ url('/movimentos_financeiros') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
-                    <a href="{{ url('/movimentos_financeiros/' . $movimentos_financeiro->id . '/edit') }}" title="Edit Movimentos_financeiro"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                    <a href="{{ url('/movimentos_financeiros') }}" title="Back">
+                        <button class="btn btn-warning btn-sm">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+
+                            Voltar
+                        </button>
+                    </a>
 
                     <form method="POST" action="{{ url('movimentos_financeiros' . '/' . $movimentos_financeiro->id) }}" accept-charset="UTF-8" style="display:inline">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
-                        <button type="submit" class="btn btn-danger btn-sm" title="Apagar Movimentos_financeiro" onclick="return confirm('Tem certeza que deseja apagar?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</button>
+
+                        <button type="submit" class="btn btn-danger btn-sm" title="Apagar Movimentos_financeiro" onclick="return confirm('Tem certeza que deseja apagar?')">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+
+                            Apagar
+                        </button>
                     </form>
 
                     <br />
@@ -55,22 +69,26 @@
 
                                 <tr>
                                     <th> Empresa </th>
-                                    <td>{{ $movimentos_financeiro->empresa->nome }}</td>
+
+                                    <td>
+                                        {{ $movimentos_financeiro->empresa->nome }}
+                                        ({{ $movimentos_financeiro->empresa->razao_social }})
+                                    </td>
                                 </tr>
 
                                 <tr>
-                                    <th>Descricao</th>
-                                    <td>{{ $movimentos_financeiro->descricao }}</td>
+                                    <th> Descricao </th>
+                                    <td> {{ $movimentos_financeiro->descricao }} </td>
                                 </tr>
 
                                 <tr>
-                                    <th>Valor</th>
-                                    <td>R$ {{ numero_iso_para_br($movimentos_financeiro->valor) }}</td>
+                                    <th> Valor </th>
+                                    <td>R$ {{ numero_iso_para_br($movimentos_financeiro->valor) }} </td>
                                 </tr>
 
                                 <tr>
-                                    <th>Data</th>
-                                    <td>{{ data_iso_para_br($movimentos_financeiro->data) }}</td>
+                                    <th> Data </th>
+                                    <td> {{ data_iso_para_br($movimentos_financeiro->created_at) }} </td>
                                 </tr>
                             </tbody>
                         </table>

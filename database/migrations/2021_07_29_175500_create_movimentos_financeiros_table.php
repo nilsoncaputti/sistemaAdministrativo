@@ -10,9 +10,9 @@ class CreateMovimentosFinanceirosTable extends Migration
     {
         Schema::create('movimentos_financeiros', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('descricao');
             $table->decimal('valor', 10, 2);
-            $table->date('data');
             $table->string('tipo');
 
             $table->bigInteger('empresa_id')->unsigned();

@@ -10,7 +10,7 @@ class MovimentosFinanceiro extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['descricao', 'valor', 'data', 'tipo', 'empresa_id'];
+    protected $fillable = ['descricao', 'valor', 'tipo', 'empresa_id'];
 
     //Método resposável pela relação com a empresa
     public function empresa()
@@ -18,10 +18,16 @@ class MovimentosFinanceiro extends Model
         return $this->belongsTo('App\Models\Empresa');
     }
 
+    //Configura a relação com o histórico do saldo
+    public function saldo()
+    {
+        return $this->MorphOne('App\Models\Saldo', 'movimento');
+    }
+
     //Método que busca moviemntos por intervalode data
     public static function buscaPorIntervalo(string $inicio, string $fim, int $quantidade = 20)
     {
-        return self::whereBetween('data', [$inicio, $fim])
+        return self::whereBetween('created_at', [$inicio, $fim])
             ->with('empresa')
             ->paginate($quantidade);
     }

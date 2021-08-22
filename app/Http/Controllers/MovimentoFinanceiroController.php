@@ -46,26 +46,4 @@ class MovimentoFinanceiroController extends Controller
 
         return view('movimentos_financeiros.show', compact('movimentos_financeiro'));
     }
-
-    public function edit($id)
-    {
-        $movimentos_financeiro = MovimentosFinanceiro::findOrFail($id);
-
-        return view('movimentos_financeiros.edit', compact('movimentos_financeiro'));
-    }
-
-    public function update(MovimentoFinanceiroRequest $request, $id)
-    {
-        $movimentos_financeiro = MovimentosFinanceiro::findOrFail($id);
-        $movimentos_financeiro->update($request->all());
-
-        return redirect('movimentos_financeiros')->with('flash_message', 'Movimentos_financeiro updated!');
-    }
-
-    public function destroy($id)
-    {
-        MovimentosFinanceiro::destroy($id);
-
-        return redirect('movimentos_financeiros')->with('flash_message', 'Movimentos_financeiro deleted!');
-    }
 }

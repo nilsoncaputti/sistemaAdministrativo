@@ -6,6 +6,7 @@ use App\Models\Empresa;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmpresaRequest;
+use App\Models\Saldo;
 use Symfony\Component\HttpFoundation\Response;
 
 class EmpresaController extends Controller
@@ -40,7 +41,10 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::BuscaPorId($id);
 
-        return view('empresa.show', \compact('empresa'));
+        return view('empresa.show', [
+            'empresa' => Empresa::BuscaPorId($id),
+            'saldo' => Saldo::ultimoDaEmpresa($id),
+        ]);
     }
 
     public function edit(Empresa $empresa): View
