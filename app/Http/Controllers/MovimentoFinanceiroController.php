@@ -42,8 +42,15 @@ class MovimentoFinanceiroController extends Controller
 
     public function show($id)
     {
-        $movimentos_financeiro = MovimentosFinanceiro::findOrFail($id);
+        $movimentos_financeiro = MovimentosFinanceiro::porIdComEmpresaExcluida($id);
 
         return view('movimentos_financeiros.show', compact('movimentos_financeiro'));
+    }
+
+    public function destroy($id)
+    {
+        MovimentosFinanceiro::destroy($id);
+
+        return redirect('movimentos_financeiros')->with('flash_message', 'Movimentos_financeiro deleted!');
     }
 }

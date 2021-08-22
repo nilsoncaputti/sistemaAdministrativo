@@ -40,9 +40,16 @@ class Empresa extends Model
         return $this->hasMany('App\Models\MovimentosEstoque');
     }
 
-    public static function todasPorTipo(string $tipo, int $quantidade = 10): AbstractPaginator
+    // Retorna as empresas por tipo
+    public static function todasPorTipo(string $tipo, string $busca, int $quantidade = 10): AbstractPaginator
     {
-        return self::where('tipo', $tipo)->paginate($quantidade);
+        return self::where('tipo', $tipo)
+            ->where(function ($q) use ($busca) {
+                $q->orWhere('nome', 'LIKE', "%$busca%")
+                    ->orWhere('razao_social', 'LIKE', "%$busca%")
+                    ->orWhere('nome_contato', 'LIKE', "%$busca%");
+            })
+            ->paginate($quantidade);
     }
 
     //Busca empresa por nome e tipo
@@ -55,13 +62,16 @@ class Empresa extends Model
             ->get();
     }
 
+    // Busca empresa por Id e suas relações
     public static function buscaPorId(int $id)
     {
         return self::with([
             'movimentosEstoque' => function ($query) {
                 $query->latest()->take(5);
             },
-            'movimentosEstoque.produto'
+            'movimentosEstoque.produto' => function ($q) {
+                $q->withTrashed();
+            }
         ])
             ->findOrFail($id);
     }

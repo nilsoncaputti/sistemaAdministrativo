@@ -25,10 +25,24 @@ class MovimentosFinanceiro extends Model
     }
 
     //Método que busca moviemntos por intervalode data
-    public static function buscaPorIntervalo(string $inicio, string $fim, int $quantidade = 20)
-    {
+    public static function buscaPorIntervalo(
+        string $inicio,
+        string $fim,
+        int $quantidade = 20
+    ) {
         return self::whereBetween('created_at', [$inicio, $fim])
-            ->with('empresa')
+            ->with(['empresa' => function ($q) {
+                $q->withTrashed();
+            }])
             ->paginate($quantidade);
+    }
+
+    // Busca movimento por id e tras empresa mesmo que excluida
+    public static function porIdComEmpresaExcluida(int $id)
+    {
+        return self::with(['empresa' => function ($q) {
+            $q->withTrashed();
+        }])
+            ->findOrFail($id);
     }
 }
